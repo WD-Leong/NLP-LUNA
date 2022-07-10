@@ -20,7 +20,7 @@ python infer_movie_dialogue_sw_tf_ver2_gpt_luna.py
 to perform inference using the trained model.
 
 ## Long Sequences
-To allow a person with modest compute resources cope with long sequences, `tf_ver2_gpt_luna_v1.py` was introduced. Using ideas from [Transformers are RNNs](https://arxiv.org/abs/2006.16236), the long sequences is divided into windows, each of size `window_len`, and the training by applying the loss on each window. Please note that the formulation has not been thoroughly checked to ensure that it is correct.
+To allow a person with modest compute resources cope with long sequences, `tf_ver2_gpt_luna_v1.py` was introduced. Using ideas from [Transformers are RNNs](https://arxiv.org/abs/2006.16236), the long sequences is divided into windows, each of size `window_len`, and the state of the prefix sums of the preceding window is fed into the next window. Training proceeds by accumulating the gradients of the loss function on each window across all windows. Please note that the formulation has not been thoroughly checked to ensure that it is correct.
 
 To train the model, run
 ```
